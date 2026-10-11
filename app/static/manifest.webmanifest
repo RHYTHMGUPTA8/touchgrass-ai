@@ -1,0 +1,10 @@
+{
+  "name": "TouchGrass AI",
+  "short_name": "TouchGrass",
+  "description": "Local-first AI outdoor missions.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#edf2e4",
+  "theme_color": "#edf2e4",
+  "icons": [{"src":"/static/leaf.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

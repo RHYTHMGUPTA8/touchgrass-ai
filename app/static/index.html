@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#edf2e4"><meta name="description" content="A local-first AI that turns a few free minutes into a real-world outdoor mission.">
+  <title>TouchGrass AI — Find your outside</title>
+  <link rel="manifest" href="/static/manifest.webmanifest"><link rel="icon" href="/static/leaf.svg" type="image/svg+xml"><link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="/" aria-label="TouchGrass home"><span class="brand-mark">✳</span> touchgrass<span class="brand-ai">.ai</span></a><span class="privacy"><span class="privacy-dot"></span> Local AI · Your preferences stay here</span></header>
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span>THE OUTSIDE IS CALLING</span><span class="eyebrow-line"></span></div>
+      <h1>A little less scroll.<br><em>A little more soul.</em></h1>
+      <p class="hero-copy">Tell us what you've got. Get one small mission that makes the world outside your window feel a little bigger.</p>
+      <div class="hero-note"><span class="sun">☼</span><span>No streaks. No feed. Just a reason to step outside.</span></div>
+    </section>
+    <section class="workspace" aria-label="Create an outdoor mission">
+      <div class="form-panel">
+        <div class="section-kicker">01 / YOUR MOMENT</div><h2>What's your outside looking like?</h2>
+        <form id="mission-form">
+          <label for="activity">I'm in the mood for</label>
+          <select id="activity" name="activity"><option value="any">Surprise me</option><option value="walking">A walk</option><option value="gardening">Gardening / plants</option><option value="birdwatching">Birdwatching</option><option value="photography">Outdoor photography</option><option value="running">A run or brisk movement</option><option value="mindfulness">Mindfulness</option><option value="exploring">Exploring nearby</option></select>
+          <div class="field-row"><div><label for="duration">Time available</label><select id="duration" name="duration"><option value="10">10 minutes</option><option value="20" selected>20 minutes</option><option value="30">30 minutes</option><option value="45">45 minutes</option><option value="60">1 hour</option><option value="90">90 minutes</option><option value="120">2 hours</option></select></div><div><label for="energy">Energy level</label><select id="energy" name="energy"><option value="low">Low-key</option><option value="medium" selected>Some energy</option><option value="high">Let's move</option></select></div></div>
+          <label for="setting">My setting</label><select id="setting" name="setting"><option value="anywhere">Anywhere nearby</option><option value="backyard">Backyard / garden</option><option value="park">A park</option><option value="neighborhood">My neighborhood</option><option value="trail">A trail / nature area</option><option value="balcony">Balcony / small outdoor space</option></select>
+          <label for="accessibility">Anything to account for? <span class="optional">OPTIONAL</span></label><input id="accessibility" name="accessibility" maxlength="240" placeholder="e.g. wheelchair-friendly, no stairs, with kids">
+          <label for="avoid">Anything you'd rather avoid? <span class="optional">OPTIONAL</span></label><input id="avoid" name="avoid" maxlength="240" placeholder="e.g. running, crowds, direct sun">
+          <button id="submit-btn" class="primary-btn" type="submit"><span>Make me a mission</span><span class="btn-arrow">↗</span></button>
+          <p class="form-footnote">AI runs locally through Ollama. No account, no cloud API, no tracking.</p>
+        </form>
+      </div>
+      <div class="result-panel" aria-live="polite" aria-atomic="true">
+        <div class="result-top"><span class="section-kicker">02 / YOUR MISSION</span><span class="mission-number">FIELD NOTE Nº <span id="mission-num">01</span></span></div>
+        <div id="empty-state" class="empty-state"><div class="landscape" aria-hidden="true"><div class="sun-disc"></div><div class="hill hill-back"></div><div class="hill hill-front"></div><div class="sprout">✳</div></div><h2>Your next little adventure<br>starts here.</h2><p>One thoughtful prompt. A real-world mission. Then put your phone away and go.</p><div class="empty-tag">MADE FOR REAL LIFE, NOT SCREEN TIME</div></div>
+        <div id="loading-state" class="loading-state hidden"><div class="loader-ring"></div><h2>Listening to the outdoors…</h2><p>Your local AI is putting together something just for you.</p></div>
+        <article id="mission-card" class="mission-card hidden">
+          <div class="mission-meta"><span class="tag" id="mission-time">20 MIN</span><span class="tag tag-soft">PHONE DOWN FRIENDLY</span></div>
+          <h2 id="mission-title">Mission title</h2><p id="mission-why" class="mission-why"></p>
+          <div class="checklist-heading">YOUR FIELD CHECKLIST <span>☑</span></div><ol id="mission-checklist" class="checklist"></ol>
+          <div class="notice"><span class="notice-icon">✳</span><div><strong>Take a moment</strong><p id="mission-mindful"></p></div></div>
+          <p class="safety-note" id="mission-safety"></p>
+          <div class="mission-actions"><button id="complete-btn" class="primary-btn" type="button">I'm heading out <span class="btn-arrow">↗</span></button><button id="another-btn" class="secondary-btn" type="button">Give me another ↻</button></div>
+          <div id="completion-message" class="completion-message hidden">Lovely. The best part happens out there. Lock your phone and enjoy it. 🌿</div>
+        </article>
+        <div id="error-state" class="error-state hidden"><div class="error-icon">↯</div><h2>We couldn't reach your local AI.</h2><p id="error-message">Start Ollama, then try again.</p><div class="setup-tip">QUICK FIX <code>ollama run qwen2.5:3b</code></div><button id="retry-btn" class="secondary-btn" type="button">Try again ↻</button></div>
+      </div>
+    </section>
+    <section class="manifesto"><div class="manifesto-symbol">✳</div><div><div class="section-kicker">WHY OPEN AI?</div><h2>Your data stays yours.<br><em>Your world stays open.</em></h2></div><p>TouchGrass uses an open-weight model running on your own machine. Once the model is downloaded, mission generation can work without sending your preferences to a company server—or needing an internet connection. You can inspect the code, switch models, and shape the AI to your needs.</p></section>
+    <footer><a class="brand footer-brand" href="/">✳ touchgrass.ai</a><span>Built for the real world. Open by design.</span><a href="https://github.com/" target="_blank" rel="noreferrer">Make it yours ↗</a></footer>
+  </main>
+  <script src="/static/app.js"></script>
+</body></html>
